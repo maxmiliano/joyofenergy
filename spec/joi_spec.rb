@@ -5,6 +5,7 @@ ENV['RACK_ENV'] = 'test'
 require_relative '../lib/app'
 require 'rspec'
 require 'rack/test'
+require 'pry' if ENV['RACK_ENV'] == 'test'
 
 describe JOIEnergy do
   include Rack::Test::Methods

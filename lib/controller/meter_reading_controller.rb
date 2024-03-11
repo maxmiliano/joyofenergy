@@ -31,6 +31,7 @@ class MeterReadingController < Sinatra::Base
       status 200
     else
       status 500
+      { error: 'No valid readings supplied' }.to_json
     end
   end
 end
