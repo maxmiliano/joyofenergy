@@ -2,7 +2,7 @@
 
 require 'sinatra/base'
 require 'json'
-
+require 'pry'
 require_relative 'controller/meter_reading_controller'
 require_relative 'controller/price_plan_comparator_controller'
 require_relative 'service/electricty_reading_service'
