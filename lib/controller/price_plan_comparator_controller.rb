@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+# This class is the controller for the price plan comparator API.
+# It is responsible for handling requests for comparing price plans and recommending the best price plans.
 class PricePlanComparatorController < Sinatra::Base
   PRICE_PLAN_KEY = 'pricePlanId'
   PRICE_PLAN_COMPARISON_KEY = 'pricePlanComparisons'
@@ -12,9 +16,7 @@ class PricePlanComparatorController < Sinatra::Base
     content_type :json
     meter_id = @params[:meter_id]
     price_plan = @account_service.price_plan_for_meter(meter_id)
-    if price_plan.nil?
-      status 404
-    end
+    status 404 if price_plan.nil?
     comparisons = @price_plan_service.consumption_cost_of_meter_readings_for_each_price_plan(meter_id)
     if comparisons.nil?
       status 404
@@ -32,7 +34,7 @@ class PricePlanComparatorController < Sinatra::Base
     limit = @params[:limit]
 
     price_plan_comparisons = @price_plan_service.consumption_cost_of_meter_readings_for_each_price_plan(meter_id)
-    ordered_price_plans = price_plan_comparisons.to_a.sort {|a, b| a[1] <=> b[1]}.map {|x| {x[0] => x[1]}}
+    ordered_price_plans = price_plan_comparisons.to_a.sort { |a, b| a[1] <=> b[1] }.map { |x| { x[0] => x[1] } }
 
     if ordered_price_plans.empty?
       status 404

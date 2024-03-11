@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sinatra/base'
 require 'json'
 
@@ -6,8 +8,10 @@ require_relative 'controller/price_plan_comparator_controller'
 require_relative 'service/electricty_reading_service'
 require_relative 'service/price_plan_service'
 require_relative 'service/account_service'
-require_relative './configuration'
+require_relative 'configuration'
 
+# This class is the entry point for the application. It sets up the routes and
+# the services that are used by the controllers.
 class JOIEnergy < Sinatra::Base
   extend Configuration
 
